@@ -119,10 +119,18 @@ const App: React.FC = () => {
   };
 
   return (
-    // Changed h-screen sm:h-dvh to just h-dvh. 
-    // This forces dynamic viewport height on mobile, accounting for browser UI bars.
-    <main className="h-dvh w-full overflow-hidden bg-paper relative p-2">
-      <div className="h-full w-full max-w-lg mx-auto flex flex-col">
+    // Outer container: Dark background for desktop/tablet "desk" look.
+    // h-dvh ensures full height on mobile browsers.
+    <main className="h-dvh w-full overflow-hidden bg-stone-900 flex items-center justify-center sm:p-4">
+      
+      {/* 
+        Inner container: The actual "Phone/Paper" app.
+        - max-w-lg limits width on large screens.
+        - w-full ensures it fits on mobile.
+        - bg-paper applies the texture here.
+        - sm:border-4 adds the frame on tablets+.
+      */}
+      <div className="h-full w-full max-w-lg bg-paper flex flex-col sm:border-4 sm:border-black sm:shadow-2xl overflow-hidden relative">
         {gameState.phase === 'setup' && (
           <SetupScreen
             playerCount={gameState.playerCount}
