@@ -15,7 +15,8 @@ const ResultScreen: React.FC<ResultScreenProps> = ({
   onPlayAgain,
 }) => {
   return (
-    <div className="flex flex-col h-full min-h-screen p-6 text-center justify-center items-center max-w-lg mx-auto">
+    // Removed min-h-screen to avoid vertical overflow within the h-dvh container
+    <div className="flex flex-col h-full p-6 text-center justify-center items-center max-w-lg mx-auto">
       
       <div className="space-y-12 w-full">
         <h2 className="text-6xl font-black uppercase tracking-tighter text-black leading-none">

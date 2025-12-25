@@ -119,9 +119,9 @@ const App: React.FC = () => {
   };
 
   return (
-    // Changed h-screen to h-dvh for better mobile viewport support
-    // Added p-2 padding to create a safe zone for button shadows so they don't get clipped or cause scroll
-    <main className="h-screen sm:h-dvh w-full overflow-hidden bg-paper relative p-2">
+    // Changed h-screen sm:h-dvh to just h-dvh. 
+    // This forces dynamic viewport height on mobile, accounting for browser UI bars.
+    <main className="h-dvh w-full overflow-hidden bg-paper relative p-2">
       <div className="h-full w-full max-w-lg mx-auto flex flex-col">
         {gameState.phase === 'setup' && (
           <SetupScreen
