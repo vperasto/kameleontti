@@ -1,0 +1,5 @@
+{
+  "name": "Kameleontti",
+  "description": "Sosiaalinen päättelypeli, jossa etsitään joukkoon piiloutunutta kameleonttia. Koko käyttöliittymä on suomeksi.",
+  "requestFramePermissions": []
+}
