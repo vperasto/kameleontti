@@ -194,6 +194,37 @@ const SetupScreen: React.FC<SetupScreenProps> = ({
                   </div>
                 </div>
               )}
+
+               {/* Game Rules Section */}
+               <div className="bg-white p-3 sm:p-4 border-4 border-black rounded-none shadow-[6px_6px_0px_0px_rgba(0,0,0,0.1)]">
+                  <h3 className="font-black text-base sm:text-xl text-black uppercase border-b-2 border-black pb-2 mb-3 sm:mb-4">Pelin Säännöt</h3>
+                  
+                  <div className="space-y-3 text-xs sm:text-sm text-black font-medium leading-relaxed">
+                    <p className="flex gap-2">
+                        <span className="font-black uppercase bg-black text-white px-1.5 py-0.5 h-fit text-[10px] sm:text-xs">1</span>
+                        <span>Yksi pelaaja on <strong>Kameleontti</strong>, muut ovat <strong>Tietäjiä</strong>. Vain Tietäjät näkevät salaisen sanan.</span>
+                    </p>
+                    <p className="flex gap-2">
+                        <span className="font-black uppercase bg-black text-white px-1.5 py-0.5 h-fit text-[10px] sm:text-xs">2</span>
+                        <span>Jokainen sanoo vuorollaan yhden vihjesanan. Vihjeen tulee liittyä salaiseen sanaan, mutta se ei saa olla liian ilmeinen.</span>
+                    </p>
+                    <p className="flex gap-2">
+                        <span className="font-black uppercase bg-black text-white px-1.5 py-0.5 h-fit text-[10px] sm:text-xs">3</span>
+                        <span>Kameleontti yrittää päätellä sanan muiden vihjeistä ja keksiä oman vakuuttavan vihjeen paljastumatta.</span>
+                    </p>
+                    <p className="flex gap-2">
+                        <span className="font-black uppercase bg-black text-white px-1.5 py-0.5 h-fit text-[10px] sm:text-xs">4</span>
+                        <span>Kierroksen lopussa äänestetään. Jos Kameleontti jää kiinni, hän saa vielä arvata salaisen sanan voittaakseen.</span>
+                    </p>
+                  </div>
+
+                  <div className="pt-4 mt-4 border-t-2 border-slate-100 text-center">
+                    <p className="text-[10px] sm:text-xs font-black text-slate-300 uppercase tracking-widest">
+                      © Vesa Perasto
+                    </p>
+                  </div>
+              </div>
+
             </div>
 
             {/* Modal Footer */}
@@ -202,7 +233,7 @@ const SetupScreen: React.FC<SetupScreenProps> = ({
                 onClick={() => setIsSettingsOpen(false)}
                 className="w-full py-3 sm:py-4 bg-black text-white text-lg sm:text-xl font-black uppercase tracking-widest border-4 border-black shadow-[6px_6px_0px_0px_rgba(100,100,100,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none rounded-none hover:bg-slate-800 transition-all"
                >
-                 Tallenna
+                 Tallenna & Sulje
                </button>
             </div>
 
