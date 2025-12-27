@@ -29,15 +29,15 @@ const RevealScreen: React.FC<RevealScreenProps> = ({
     setHasSeenRole(false);
   }, [playerName]);
 
-  const handleToggle = () => {
-    if (isRevealed) {
-      // Hiding
-      setIsRevealed(false);
-    } else {
-      // Showing
-      setIsRevealed(true);
-      setHasSeenRole(true);
-    }
+  const handleReveal = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setIsRevealed(true);
+    setHasSeenRole(true);
+  };
+
+  const handleHide = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setIsRevealed(false);
   };
 
   const handleNext = () => {
@@ -60,7 +60,6 @@ const RevealScreen: React.FC<RevealScreenProps> = ({
       {/* Card Container */}
       <div 
         className="w-full aspect-[3/4] max-h-[450px] sm:max-h-[500px] relative perspective-1000 cursor-pointer group"
-        onClick={handleToggle}
       >
         <div className={`
           relative w-full h-full text-center transition-all duration-300 transform-style-3d
@@ -68,7 +67,10 @@ const RevealScreen: React.FC<RevealScreenProps> = ({
         `}>
           
           {/* FRONT (Hidden state) */}
-          <div className="absolute inset-0 backface-hidden">
+          <div 
+            className="absolute inset-0 backface-hidden"
+            onClick={handleReveal}
+          >
             <div className="w-full h-full bg-black border-4 border-black flex flex-col items-center justify-center p-6 sm:p-8 shadow-[12px_12px_0px_0px_rgba(0,0,0,0.2)]">
                
                {hasSeenRole ? (
@@ -95,7 +97,10 @@ const RevealScreen: React.FC<RevealScreenProps> = ({
           </div>
 
           {/* BACK (Revealed state) */}
-          <div className="absolute inset-0 backface-hidden rotate-y-180">
+          <div 
+            className="absolute inset-0 backface-hidden rotate-y-180"
+            onClick={handleHide}
+          >
             <div className={`
               w-full h-full bg-white border-4 border-black flex flex-col items-center justify-center p-4 sm:p-6 shadow-[12px_12px_0px_0px_rgba(0,0,0,0.2)] relative
             `}>
@@ -146,7 +151,7 @@ const RevealScreen: React.FC<RevealScreenProps> = ({
               )}
               
               <button 
-                onClick={(e) => { e.stopPropagation(); setIsRevealed(false); }}
+                onClick={handleHide}
                 className="absolute top-2 right-2 sm:top-4 sm:right-4 p-2 text-black hover:bg-slate-100 transition-colors border-2 border-transparent hover:border-black"
               >
                 <EyeOff size={24} className="sm:w-8 sm:h-8" />
@@ -161,7 +166,7 @@ const RevealScreen: React.FC<RevealScreenProps> = ({
       <div className="w-full pt-4 sm:pt-8">
         {isRevealed ? (
            <button
-           onClick={() => setIsRevealed(false)}
+           onClick={handleHide}
            className="w-full py-4 sm:py-5 text-lg sm:text-xl font-black uppercase tracking-widest border-4 border-black bg-white text-black hover:bg-black hover:text-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] sm:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all rounded-none flex items-center justify-center gap-3"
          >
            Piilota kortti <EyeOff size={20} className="sm:w-6 sm:h-6" />
