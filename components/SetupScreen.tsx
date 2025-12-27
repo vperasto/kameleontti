@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Settings, Check, Square, CheckSquare, X, Hash } from 'lucide-react';
+import { Settings, Check, Square, CheckSquare, X, Hash, Plus, UserPen } from 'lucide-react';
 import { CATEGORIES } from '../constants';
 import { CategoryId, GameSettings } from '../types';
 
@@ -38,6 +38,17 @@ const SetupScreen: React.FC<SetupScreenProps> = ({
     updateSettings({ playerNames: newNames });
   };
 
+  const handleAddPlayer = () => {
+    if (playerCount < 20) {
+      setPlayerCount(playerCount + 1);
+    }
+  };
+
+  const handleQuickNameEdit = () => {
+    updateSettings({ usePlayerNames: true });
+    setIsSettingsOpen(true);
+  };
+
   return (
     <div className="flex flex-col h-full relative">
       
@@ -64,7 +75,20 @@ const SetupScreen: React.FC<SetupScreenProps> = ({
         <section className="space-y-3 sm:space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-base sm:text-lg font-black uppercase tracking-widest text-black">Pelaajat</h2>
-            <span className="text-xl sm:text-2xl font-bold font-mono bg-black text-white px-3 py-1 sm:px-4 sm:py-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)]">{playerCount}</span>
+            
+            <div className="flex items-center gap-3">
+              <button 
+                onClick={handleQuickNameEdit}
+                className="flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-wider text-slate-500 hover:text-black hover:bg-slate-100 px-2 py-1 transition-colors border-2 border-transparent hover:border-black"
+                title="Nimeä pelaajat"
+              >
+                <UserPen size={16} className="sm:w-5 sm:h-5" />
+                <span>Nimeä</span>
+              </button>
+              <span className="text-xl sm:text-2xl font-bold font-mono bg-black text-white px-3 py-1 sm:px-4 sm:py-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)]">
+                {playerCount}
+              </span>
+            </div>
           </div>
           <div className="pt-2 px-1">
             <input
@@ -192,6 +216,16 @@ const SetupScreen: React.FC<SetupScreenProps> = ({
                       </div>
                     ))}
                   </div>
+                  
+                  {playerCount < 20 && (
+                    <button 
+                      onClick={handleAddPlayer}
+                      className="flex items-center justify-center gap-2 w-full py-3 border-4 border-dashed border-slate-300 text-slate-400 hover:border-black hover:text-black font-bold uppercase tracking-widest transition-all rounded-none group"
+                    >
+                      <Plus size={24} className="group-hover:scale-110 transition-transform" />
+                      Lisää pelaaja
+                    </button>
+                  )}
                 </div>
               )}
 
@@ -221,6 +255,9 @@ const SetupScreen: React.FC<SetupScreenProps> = ({
                   <div className="pt-4 mt-4 border-t-2 border-slate-100 text-center">
                     <p className="text-[10px] sm:text-xs font-black text-slate-300 uppercase tracking-widest">
                       © Vesa Perasto
+                    </p>
+                    <p className="text-[9px] font-mono font-bold text-slate-200 mt-1 uppercase tracking-wider">
+                       Päivitetty: 24.5.2025
                     </p>
                   </div>
               </div>
